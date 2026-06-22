@@ -399,58 +399,94 @@ body.intro-done .nav-actions{
 .name-body-en{font-size:12px;color:var(--sumi-40);font-style:italic;margin-top:8px;line-height:1.7;}
 
 /* ─── PAIN ─── */
-.pain-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;}
-.pain-group-label{
-  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-  font-weight:400;margin-bottom:20px;padding-bottom:12px;
+.pain-cols{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:24px;
+  align-items:start;
+}
+/* カード */
+.pain-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+/* カードヘッダー */
+.pain-card-head{
+  padding:20px 24px 16px;
   border-bottom:1px solid var(--line);
+}
+.pain-group-label{
+  font-size:15px;
+  font-family:'Shippori Mincho',serif;
+  font-weight:400;
+  letter-spacing:0.06em;
+  margin:0;
   display:flex;align-items:center;gap:8px;
 }
 .pgl-gold {color:var(--kohaku-dark);}
 .pgl-green{color:var(--fukami);}
-.pain-items{display:flex;flex-direction:column;}
-.pain-item{
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
-  transition:padding-left .25s ease,border-bottom-color .25s ease;
-  cursor:default;
+.pgl-dark {color:var(--sumi);}
+/* 課題リスト */
+.pain-items{
+  padding:8px 24px 16px;
+  display:flex;flex-direction:column;
+  flex:1;
 }
-.pain-item:hover{padding-left:10px;border-bottom-color:var(--kohaku);}
+.pain-item{
+  padding:12px 0;
+  border-bottom:1px solid var(--sumi-12);
+  display:flex;align-items:baseline;gap:8px;
+}
 .pain-item:last-child{border-bottom:none;}
-.pain-q {font-size:13px;font-weight:400;line-height:1.7;color:var(--sumi);}
-.pain-en{font-size:12px;color:var(--sumi-40);font-style:italic;margin-top:3px;line-height:1.55;}
-/* mission arrow + result */
+.pain-item::before{
+  content:'·';
+  color:var(--kohaku);
+  font-size:18px;
+  line-height:1;
+  flex-shrink:0;
+}
+.pain-q{font-size:13px;font-weight:300;line-height:1.7;color:var(--sumi-70);}
+.pain-en{font-size:11px;color:var(--sumi-40);font-style:italic;margin-top:2px;line-height:1.5;}
+/* ミッション（カード下部） */
+.pain-mission-wrap{
+  margin:0 24px 0;
+  padding:16px 0 20px;
+  border-top:2px solid var(--kohaku-light);
+  text-align:center;
+}
 .pain-arrow{
-  text-align:center;font-size:20px;
-  margin:16px 0 12px;color:var(--kohaku);
-  display:block;
+  font-size:16px;color:var(--kohaku);
+  display:block;margin-bottom:10px;
+  opacity:0.7;
 }
 .pain-mission{
-  font-size:13px;font-weight:500;line-height:1.75;
-  color:var(--sumi);text-align:center;
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(13px,1.8vw,15px);
+  font-weight:400;line-height:1.8;
+  color:var(--sumi);
 }
 .pain-mission em{font-style:normal;color:var(--kohaku);}
-.pain-mission .en-sub{
-  display:block;font-size:11px;font-weight:300;
-  color:var(--sumi-40);font-style:italic;
-  margin-top:4px;line-height:1.5;
-}
-/* mission bottom bar */
+/* ミッション共通メッセージ */
 .pain-bottom{
-  margin-top:40px;padding-top:28px;
+  margin-top:48px;padding:32px 0;
   border-top:1px solid var(--line);
   text-align:center;
 }
 .pain-bottom-title{
   font-family:'Shippori Mincho',serif;
-  font-size:clamp(15px,2.5vw,19px);font-weight:400;
-  letter-spacing:0.04em;margin-bottom:8px;
+  font-size:clamp(16px,2.5vw,22px);font-weight:400;
+  letter-spacing:0.06em;color:var(--sumi);
 }
-.pain-bottom-sub{
-  font-size:14px;color:var(--sumi-70);font-weight:300;
-  line-height:1.8;
+.pain-bottom-title em{font-style:normal;color:var(--kohaku);}
+/* モバイル */
+@media(max-width:680px){
+  .pain-cols{grid-template-columns:1fr;gap:16px;}
+  .pain-group-label{font-size:14px;}
+  .pain-bottom-title{font-size:16px;}
 }
-.pain-bottom-sub em{font-style:normal;color:var(--kohaku);}
 
 /* ─── EXPERIENCES ─── */
 .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
@@ -1204,10 +1240,7 @@ body.theme-yoru .footer{background:#060E09;}
   .exp-name{font-size:12px;}
 
   /* === pain section === */
-  .pain-cols{grid-template-columns:1fr;gap:28px;}
-  .pain-group-label{font-size:10px;}
-  .pain-q{font-size:13px;}
-  .pain-bottom-title{font-size:15px;}
+  .pain-q{font-size:12px;}
 
   /* === flow === */
   .flow-item{padding:18px 0;}
@@ -1476,30 +1509,36 @@ body.theme-yoru .footer{background:#060E09;}
     <div class="pain-cols stagger">
 
       <!-- 旅行者 -->
-      <div>
-        <p class="pain-group-label pgl-gold">
-          <span class="jp">旅行者</span>
-          <span class="en">Travelers</span>
-        </p>
+      <div class="pain-card">
+        <div class="pain-card-head">
+          <p class="pain-group-label pgl-gold">
+            <span class="jp">旅行者</span>
+            <span class="en">Travelers</span>
+          </p>
+        </div>
         <div class="pain-items">
           <div class="pain-item">
             <p class="pain-q jp">日本文化を学ぶツアーはあるが、ミートアップのような形で日本人と関わる機会が少ない</p>
-            <p class="pain-q en">Tours exist to learn about Japanese culture, but chances to actually connect with locals are rare.</p>
+            <p class="pain-q en">Tours exist to learn Japanese culture, but chances to connect with locals are rare.</p>
           </div>
         </div>
-        <span class="pain-arrow">⬇</span>
-        <p class="pain-mission">
-          <span class="jp">日本人の<em>日常</em>を<em>体験する</em><br>機会の提供</span>
-          <span class="en">Offering chances to<br><em>experience</em> Japanese <em>daily life</em></span>
-        </p>
+        <div class="pain-mission-wrap">
+          <span class="pain-arrow">↓</span>
+          <p class="pain-mission">
+            <span class="jp">日本人の<em>日常</em>を<em>体験する</em><br>機会の提供</span>
+            <span class="en">Offering chances to<br><em>experience</em> Japanese <em>daily life</em></span>
+          </p>
+        </div>
       </div>
 
       <!-- 日本人 -->
-      <div>
-        <p class="pain-group-label" style="color:var(--sumi);border-bottom-color:var(--line);">
-          <span class="jp">日本人</span>
-          <span class="en">Japanese locals</span>
-        </p>
+      <div class="pain-card">
+        <div class="pain-card-head">
+          <p class="pain-group-label pgl-dark">
+            <span class="jp">日本人</span>
+            <span class="en">Japanese locals</span>
+          </p>
+        </div>
         <div class="pain-items">
           <div class="pain-item">
             <p class="pain-q jp">外国語をアウトプットする機会がない</p>
@@ -1518,19 +1557,23 @@ body.theme-yoru .footer{background:#060E09;}
             <p class="pain-q en">Haven't noticed what makes Japan special.</p>
           </div>
         </div>
-        <span class="pain-arrow">⬇</span>
-        <p class="pain-mission">
-          <span class="jp"><em>言語交換</em>交流会</span>
-          <span class="en"><em>Language exchange</em> &amp; connection</span>
-        </p>
+        <div class="pain-mission-wrap">
+          <span class="pain-arrow">↓</span>
+          <p class="pain-mission">
+            <span class="jp"><em>言語交換</em>交流会</span>
+            <span class="en"><em>Language exchange</em> &amp; connection</span>
+          </p>
+        </div>
       </div>
 
       <!-- 外国人労働者 -->
-      <div>
-        <p class="pain-group-label pgl-green">
-          <span class="jp">外国人労働者</span>
-          <span class="en">Foreign workers</span>
-        </p>
+      <div class="pain-card">
+        <div class="pain-card-head">
+          <p class="pain-group-label pgl-green">
+            <span class="jp">外国人労働者</span>
+            <span class="en">Foreign workers</span>
+          </p>
+        </div>
         <div class="pain-items">
           <div class="pain-item">
             <p class="pain-q jp">コミュニティを広げづらい</p>
@@ -1541,11 +1584,13 @@ body.theme-yoru .footer{background:#060E09;}
             <p class="pain-q en">Little connection with the local area.</p>
           </div>
         </div>
-        <span class="pain-arrow">⬇</span>
-        <p class="pain-mission">
-          <span class="jp">誰かの<em>居場所</em>となる<br>新しい<em>可能性</em>を見つけられる場所</span>
-          <span class="en">A place to find your <em>community</em><br>and discover new <em>possibilities</em></span>
-        </p>
+        <div class="pain-mission-wrap">
+          <span class="pain-arrow">↓</span>
+          <p class="pain-mission">
+            <span class="jp">誰かの<em>居場所</em>となる<br>新しい<em>可能性</em>を見つけられる場所</span>
+            <span class="en">A place to find your <em>community</em><br>and discover new <em>possibilities</em></span>
+          </p>
+        </div>
       </div>
 
     </div>
